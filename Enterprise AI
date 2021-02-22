@@ -1,0 +1,156 @@
+import pandas as pd
+from textblob import TextBlob
+import matplotlib.pyplot as plt
+import nltk
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
+nltk.download('stopwords')
+nltk.download('punkt')
+[nltk_data] Downloading package stopwords to /root/nltk_data...
+[nltk_data]   Unzipping corpora/stopwords.zip.
+[nltk_data] Downloading package punkt to /root/nltk_data...
+[nltk_data]   Unzipping tokenizers/punkt.zip.
+True
+data=pd.read_csv('/content/drive/MyDrive/dataset/comments.csv',sep="\n")
+
+
+df = pd.DataFrame(data, columns = ['feedback'])
+polarity=[]
+comments=[]
+negative_comments=[]
+positive=0
+negative=0
+
+
+for i in df.index:
+  blob=TextBlob(df['feedback'][i])
+  #print(df['feedback'][i])
+  if(blob.sentiment.polarity*100 > 0):
+    polarity.append(int(blob.sentiment.polarity*100))
+    #print(df['feedback'][i],blob.sentiment.polarity*100)
+    positive+=1
+  else:
+    #print(df['feedback'][i],blob.sentiment.polarity*100)
+    polarity.append(int(blob.sentiment.polarity*100))
+    negative_comments.append(df['feedback'][i])
+    negative+=1
+  
+#print(polarity)
+total=positive+negative
+positive=positive/total*100
+negative=negative/total*100
+print("positive:",positive)
+print("negative:",negative)
+data=pd.read_csv('/content/drive/MyDrive/dataset/comments.csv',sep="\n")
+
+
+df = pd.DataFrame(data, columns = ['feedback'])
+polarity=[]
+comments=[]
+negative_comments=[]
+positive=0
+negative=0
+
+
+for i in df.index:
+  blob=TextBlob(df['feedback'][i])
+  #print(df['feedback'][i])
+  if(blob.sentiment.polarity*100 > 0):
+    polarity.append(int(blob.sentiment.polarity*100))
+    #print(df['feedback'][i],blob.sentiment.polarity*100)
+    positive+=1
+  else:
+    #print(df['feedback'][i],blob.sentiment.polarity*100)
+    polarity.append(int(blob.sentiment.polarity*100))
+    negative_comments.append(df['feedback'][i])
+    negative+=1
+  
+#print(polarity)
+total=positive+negative
+positive=positive/total*100
+negative=negative/total*100
+print("positive:",positive)
+print("negative:",negative)
+pi=[positive,negative]
+']
+
+print("positive:",positive)
+print("negative:",negative)
+
+plt.title("BAR CHART") 
+plt.pilabel=['positive','negativee(pi,labels=label)
+plt.show()
+for i in  negative_comments:
+  text_tokens = word_tokenize(i)
+  tokens_without_sw = [word for word in text_tokens if not word in stopwords.words()]
+print(tokens_without_sw)and *
+#removing stop words
+stop_words = set(stopwords.words('english'))
+
+filter=[]
+
+for i in negative_comments:
+  word_tokens = word_tokenize(i)  
+  filtered_sentence = [w for w in word_tokens if not w in stop_words]  
+  filter+=filtered_sentence
+  #print(filtered_sentence)
+#print(filter)
+
+filter=set(filter)
+
+neg_key_words=[]
+
+for i in filter:
+  blob=TextBlob(i)
+  if(len(i)>5) and blob.sentiment.polarity != 0:
+    #print(i+":"+str(blob.sentiment.polarity))
+    neg_key_words.append(i)
+
+print(neg_key_words)
+!pip install tesseract
+!pip install pytesseract
+!sudo apt-get install tesseract-ocr
+import pytesseract
+from PIL import Image
+
+pytesseract.pytesseract.tesseract_cmd = r"/usr/bin/tesseract"
+
+img = Image.open('/content/drive/MyDrive/dataset/test1.png')
+text = pytesseract.image_to_string(img)
+testdata=text.split(' ')
+
+polarity=[]
+comments=[]
+negative_comments=[]
+positive=0
+negative=0
+
+
+for i in testdata:
+  blob=TextBlob(i)
+  #print(df['feedback'][i])
+  if(blob.sentiment.polarity*100 > 0):
+    polarity.append(int(blob.sentiment.polarity*100))
+    #print(df['feedback'][i],blob.sentiment.polarity*100)
+    positive+=1
+  else:
+    #print(df['feedback'][i],blob.sentiment.polarity*100)
+    polarity.append(int(blob.sentiment.polarity*100))
+    negative_comments.append(i)
+    negative+=1
+  
+#print(polarity)
+total=positive+negative
+positive=positive/total*100
+negative=negative/total*100
+print("positive:",positive)
+print("negative:",negative)
+pi=[positive,negative]
+label=['positive','negative']
+
+print("positive:",positive)
+print("negative:",negative)
+
+plt.title("BAR CHART") 
+plt.pie(pi,labels=label)
+plt.show()
